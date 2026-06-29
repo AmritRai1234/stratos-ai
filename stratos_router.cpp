@@ -18,11 +18,11 @@ int main() {
     cout << "[+] Physical RAM Detected: " << ram_gb << " GB\n";
 
     // 2. Define Paths (Global Installation)
-    string model_path = "/home/amrit/.local/opt/stratos/models/qwen2.5-14b-instruct-q2_k-00001-of-00002.gguf";
+    string model_path = "/home/amrit/.local/opt/stratos/models/gemma-4-E4B-it-Q4_K_M.gguf";
     string engine_bin = "/home/amrit/.local/opt/stratos/bin/llama-cli";
 
     // 3. Dynamic Optimization Logic
-    string flags = "-m " + model_path + " -cnv -c 1024";
+    string flags = "-m " + model_path + " -cnv -c 4096";
 
     if (ram_gb < 10.0) {
         cout << "[!] HARDWARE PROFILE: CONSTRAINED\n";
