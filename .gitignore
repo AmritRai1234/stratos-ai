@@ -1,0 +1,23 @@
+# Environments
+venv/
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+.vscode/
+
+# Build and Binary
+*.bin
+*.out
+*.o
+*.so
+build/
+build_vulkan/
+build*/
+
+# Models
+*.gguf
+*.safetensors
+*.pt
+*.onnx
