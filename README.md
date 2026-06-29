@@ -15,6 +15,25 @@ Stratos AI is the official local intelligence core for **Stratos OS**. It is a z
 5. **Extreme Memory Optimization**
    Auto-injects 8-bit KV-Cache Crushing (`-ctk q8_0`) and SSD zero-copy `mmap` streaming when constrained hardware (< 10GB RAM) is detected, successfully running massive MoE and 14B architectures on cheap hardware.
 
+## ⚙️ Dependencies & Technologies
+
+Stratos AI relies on a highly curated stack of math solvers, C++ engines, and Linux system libraries:
+
+### Core Frameworks
+*   **[llama.cpp](https://github.com/ggerganov/llama.cpp)**: The underlying execution engine. We utilize the bleeding-edge `GGML_VULKAN` builds for hardware-agnostic tensor execution.
+*   **[Microsoft Z3 Theorem Prover](https://github.com/Z3Prover/z3)**: Used in `model_refiner.py` for formal mathematical synthesis of 1.58-bit ternary thresholds.
+
+### Python Requirements (`requirements.txt`)
+*   `torch` (PyTorch): Used for extracting raw tensor weights from HuggingFace repositories (`forge.py`).
+*   `numpy`: Used for matrix manipulation during distillation.
+*   `huggingface-hub`: Used to programmatically download massive `.gguf` binaries.
+*   `z3-solver`: Python bindings for the Z3 math engine.
+
+### System Dependencies (Linux)
+*   **Vulkan SDK** (`libvulkan-dev`): Required for GPU compute offloading across AMD, Intel, and Nvidia architectures.
+*   **GCC / G++**: Required for compiling the AVX2 C++ intrinsics and the `stratos-ai` daemon router.
+*   **Linux Kernel Headers** (`<sys/sysinfo.h>`): Used by `stratos_router.cpp` for bare-metal RAM probing.
+
 ## 📦 Installation (Global Daemon)
 
 Stratos AI ships with a global installation script that securely vaults your models, compiles the C++ hardware router, and deploys the Vulcan-accelerated daemon globally.
